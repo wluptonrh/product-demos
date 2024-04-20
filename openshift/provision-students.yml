@@ -1,0 +1,79 @@
+---
+- name: Deploy Dev Spaces on OCP
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Create namespace for each student
+      redhat.openshift.k8s:
+        name: "{{ item }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+      loop: 
+        - student1
+        - student2
+
+    - name: Deploy dev spaces
+      redhat.openshift.k8s:
+        state: present
+        definition:
+          apiVersion: org.eclipse.che/v2
+          kind: CheCluster
+          metadata:
+            name: "{{ item }}"
+            namespace: "{{ item }}"
+          spec:
+            components:
+              cheServer:
+                debug: false
+                logLevel: INFO
+              dashboard: {}
+              database:
+                credentialsSecretName: postgres-credentials
+                externalDb: false
+                postgresDb: dbche
+                postgresHostName: postgres
+                postgresPort: '5432'
+                pvc:
+                  claimSize: 1Gi
+              devWorkspace: {}
+              devfileRegistry: {}
+              imagePuller:
+                enable: false
+                spec: {}
+              metrics:
+                enable: true
+              pluginRegistry:
+                openVSXURL: 'https://open-vsx.org'
+            containerRegistry: {}
+            devEnvironments:
+              startTimeoutSeconds: 300
+              secondsOfRunBeforeIdling: -1
+              maxNumberOfWorkspacesPerUser: -1
+              containerBuildConfiguration:
+                openShiftSecurityContextConstraint: container-build
+              disableContainerBuildCapabilities: true
+              defaultEditor: che-incubator/che-code/insiders
+              defaultComponents:
+                - container:
+                    image: >-
+                      registry.redhat.io/devspaces/udi-rhel8@sha256:aa39ede33bcbda6aa2723d271c79ab8d8fd388c7dfcbc3d4ece745b7e9c84193
+                    sourceMapping: /projects
+                  name: universal-developer-image
+              defaultNamespace:
+                autoProvision: true
+                template: <username>-devspaces
+              secondsOfInactivityBeforeIdling: 1800
+              storage:
+                pvcStrategy: per-user
+            gitServices: {}
+            networking:
+              auth:
+                gateway:
+                  configLabels:
+                    app: che
+                    component: che-gateway-config
+      loop:
+        - student1
+        - student2
