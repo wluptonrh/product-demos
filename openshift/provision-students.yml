@@ -63,7 +63,7 @@
                   name: universal-developer-image
               defaultNamespace:
                 autoProvision: true
-                template: <username>-devspaces
+                template: "{{ item }}"-devspaces
               secondsOfInactivityBeforeIdling: 1800
               storage:
                 pvcStrategy: per-user
