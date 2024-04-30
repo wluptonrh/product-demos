@@ -71,14 +71,14 @@ controller_credentials:
 controller_projects:
   - name: ocp-virt-inventory
     organization: Default
-    scm_branch: master #or main
+    scm_branch: main
     scm_type: git
     scm_update_on_launch: 'no'
     scm_url: https://github.com/wluptonrh/ocp-virt-inventory.git
 
   - name: summit-edu
     organization: Default
-    scm_branch: master
+    scm_branch: main
     scm_type: git
     scm_update_on_launch: 'no'
     scm_url: https://github.com/wluptonrh/summit-edu.git
