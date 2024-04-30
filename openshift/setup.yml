@@ -1,36 +1,139 @@
 ---
-controller_components:
-  - credentials
-  - job_templates
+controller_credential_types:
+  - name: OCP Credential Type
+    inputs:
+      fields:
+        - id: virt_host
+          type: string
+          label: Host
+        - id: virt_api_key
+          type: string
+          label: API Key
+          secret: true
+        - id: virt_validate_certs
+          type: boolean
+          label: Validate Certs
+      required:
+        - virt_host
+        - virt_api_key
+    injectors:
+      extra_vars:
+        K8S_AUTH_HOST: '{{ virt_host }}'
+        K8S_AUTH_API_KEY: '{{ virt_api_key }}'
+        K8S_AUTH_VERIFY_SSL: '{{ virt_validate_certs }}'
+
+  - name: RHSM Credential Type
+    inputs:
+      fields:
+        - id: username
+          type: string
+          label: rhsm username
+          secret: true
+        - id: password
+          type: string
+          label: rhsm password
+          secret: true
+      required:
+        - username
+        - password
+    injectors:
+      extra_vars:
+        rhsm_password: '{{ password }}'
+        rhsm_username: '{{ username }}'
 
 controller_credentials:
   - name: OpenShift Credential
+    credential_type: OCP Credential Type
     organization: Default
-    credential_type: OpenShift or Kubernetes API Bearer Token
     inputs:
-      host: CHANGEME
-      bearer_token: CHANGEME
-      verify_ssl: false
+      virt_host: REPLACEME
+      virt_api_key: REPLACEME
+      virt_validate_certs: 'false'
+
+  - name: RHSM Credential 
+    credential_type: RHSM Credential Type
+    organization: Default
+    inputs:
+      username: REPLACEME
+      password: REPLACEME
+
+  - name: VM Credential
+    credential_type: Machine
+    organization: Default
+
+controller_projects:
+  - name: ocp-virt-inventory
+    organization: Default
+    scm_branch: master #or main
+    scm_type: git
+    scm_update_on_launch: 'no'
+    scm_url: https://github.com/wluptonrh/ocp-virt-inventory.git
+
+  - name: summit-edu
+    organization: Default
+    scm_branch: master
+    scm_type: git
+    scm_update_on_launch: 'no'
+    scm_url: https://github.com/wluptonrh/summit-edu.git
+
+controller_inventory_sources:
+  - name: OpenShift Inventory Source
+    inventory: Demo Inventory
+    source: scm
+    source_project: ocp-virt-inventory
+    #source_path:
+    credential: OpenShift Credential
 
 controller_templates:
-  - name: OpenShift / Dev Spaces
+  - name: VM Provision
     job_type: run
     inventory: "Demo Inventory"
-    project: "Ansible official demo project"
-    playbook: "openshift/devspaces.yml"
+    project: "summit-edu"
+    playbook: "kubevirt-provision.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
-    credentials:
-      - "OpenShift Credential"
+    credentials: OpenShift Credential
+    extra_vars:
+      os_version: rhel9
+      cloudusername: REPLACEME
+      cloudpassword: REPLACEME
+      ssh_authorized_key: REPLACEME
 
-  - name: OpenShift / GitLab
-    job_type: run
-    inventory: "Demo Inventory"
-    project: "Ansible official demo project"
-    playbook: "openshift/gitlab.yml"
-    notification_templates_started: Telemetry
-    notification_templates_success: Telemetry
-    notification_templates_error: Telemetry
-    credentials:
-      - "OpenShift Credential"
+
+
+# controller_components:
+#   - credentials
+#   - job_templates
+
+# controller_credentials:
+#   - name: OpenShift Credential
+#     organization: Default
+#     credential_type: OpenShift or Kubernetes API Bearer Token
+#     inputs:
+#       host: CHANGEME
+#       bearer_token: CHANGEME
+#       verify_ssl: false
+
+# controller_templates:
+#   - name: OpenShift / Dev Spaces
+#     job_type: run
+#     inventory: "Demo Inventory"
+#     project: "Ansible official demo project"
+#     playbook: "openshift/devspaces.yml"
+#     notification_templates_started: Telemetry
+#     notification_templates_success: Telemetry
+#     notification_templates_error: Telemetry
+#     credentials:
+#       - "OpenShift Credential"
+
+#   - name: OpenShift / GitLab
+#     job_type: run
+#     inventory: "Demo Inventory"
+#     project: "Ansible official demo project"
+#     playbook: "openshift/gitlab.yml"
+#     notification_templates_started: Telemetry
+#     notification_templates_success: Telemetry
+#     notification_templates_error: Telemetry
+#     credentials:
+#       - "OpenShift Credential"
