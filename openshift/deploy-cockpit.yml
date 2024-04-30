@@ -1,0 +1,48 @@
+---
+# - name: Basic System Setup to Deploy RHEL Webconsole
+#   hosts: "summit-edu-{{ vm_name }}"
+#   become: true
+#   tasks:
+
+- name: Install firewalld
+  ansible.builtin.dnf:
+    name: firewalld
+    state: present
+
+- name: Ensure firewalld is running
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Allow HTTP traffic on web servers
+  ansible.posix.firewalld:
+    service: cockpit
+    permanent: true
+    state: enabled
+  #notify: Reload Firewall
+
+- name: Allow HTTPS traffic on web servers
+  ansible.posix.firewalld:
+    service: cockpit
+    permanent: true
+    state: enabled
+  #notify: Reload Firewall
+
+- name: Install cockpit
+  ansible.builtin.dnf:
+    name: cockpit
+    state: present
+
+- name: Start cockpit
+  ansible.builtin.service:
+    name: cockpit
+    state: started
+  check_mode: false
+
+
+  #handlers:
+- name: Reload Firewall
+  ansible.builtin.service:
+    name: firewalld
+    state: reloaded
