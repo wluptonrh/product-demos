@@ -68,6 +68,10 @@ controller_credentials:
     credential_type: Machine
     organization: Default
 
+controller_execution_environments:
+  - name: summit-edu-kubevirt-ee
+    image: quay.io/cmcaskil/kubevirt_ee
+    
 controller_projects:
   - name: ocp-virt-inventory
     organization: Default
