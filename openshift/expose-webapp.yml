@@ -1,0 +1,35 @@
+---
+# - name: Create Service Access the RHEL Web Console
+#   hosts: localhost
+#   tasks:
+
+- name: Create Cockpit Service
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: cockpit-service
+        namespace: summit-edu
+      spec:
+        type: NodePort
+        selector:
+          env: "{{ vm_application }}"
+        ports:
+          - protocol: TCP
+            port: 9090
+            targetPort: 9090
+  register: svc_info
+
+- name: Print Service Info
+  ansible.builtin.debug:
+    msg: "{{ svc_info }}"
+    
+- name: Gather Nodeport IP
+  kubernetes.core.k8s_cluster_info:
+  register: cluster_info
+
+- name: Print Cluster Info
+  ansible.builtin.debug:
+    msg: "{{ cluster_info }}"
