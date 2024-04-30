@@ -102,7 +102,7 @@ controller_templates:
     job_type: run
     inventory: "Demo Inventory"
     project: "summit-edu"
-    playbook: "kubevirt-provision.yml"
+    playbook: "openshift/kubevirt-provision.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
@@ -120,7 +120,7 @@ controller_templates:
     inventory: "Demo Inventory"
     limit: '!localhost'
     project: "Ansible official demo project"
-    playbook: "deploy-app.yml"
+    playbook: "openshift/deploy-app.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
@@ -145,7 +145,7 @@ controller_templates:
   - name: Expose Application
     inventory: "Demo Inventory"
     project: "Ansible official demo project"
-    playbook: "expose-app.yml"
+    playbook: "openshift/expose-app.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
