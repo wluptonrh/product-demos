@@ -1,0 +1,15 @@
+---
+- name: Expose Application on OpenShift
+  hosts: localhost
+  #become: true
+  tasks:
+
+    - name: Setup Networking for Apache
+      ansible.builtin.import_tasks: 
+        file: expose-webapp.yml
+      when: vm_application == "apache"
+
+    - name: Setup Networking for Cockpit
+      ansible.builtin.import_tasks: 
+        file: expose-cockpit.yml
+      when: vm_application == "cockpit"
