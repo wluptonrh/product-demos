@@ -1,6 +1,7 @@
 ---
 controller_components:
   - projects
+  - execution_environments
   - credential_types
   - credentials
   - inventory_sources
