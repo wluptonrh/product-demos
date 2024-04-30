@@ -1,35 +1,55 @@
 ---
-# - name: Create Service Access the RHEL Web Console
+
+# - name: Create Service and Route for our Apache Webserver
 #   hosts: localhost
 #   tasks:
 
-- name: Create Cockpit Service
+- name: Create webapp service
   kubernetes.core.k8s:
     state: present
     definition:
       apiVersion: v1
       kind: Service
       metadata:
-        name: cockpit-service
+        name: webapp-service
         namespace: summit-edu
       spec:
-        type: NodePort
         selector:
           env: "{{ vm_application }}"
         ports:
           - protocol: TCP
-            port: 9090
-            targetPort: 9090
-  register: svc_info
+            port: 80
+            targetPort: 80
 
-- name: Print Service Info
-  ansible.builtin.debug:
-    msg: "{{ svc_info }}"
-    
-- name: Gather Nodeport IP
-  kubernetes.core.k8s_cluster_info:
-  register: cluster_info
+- name: Create webapp route
+  kubernetes.core.k8s:
+    state: present
+    definition: 
+      kind: Route
+      apiVersion: route.openshift.io/v1
+      metadata:
+        name: webapp-route
+        namespace: summit-edu
+        labels: {}
+      spec:
+        to:
+          kind: Service
+          name: webapp-service
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+        wildcardPolicy: None
+        port:
+          targetPort: 80
 
-- name: Print Cluster Info
+- name: Fetch route info
+  kubernetes.core.k8s:
+    api_version: v1
+    kind: Route
+    name: webapp-route
+    namespace: summit-edu
+  register: route_info
+
+- name: Print webapp route info
   ansible.builtin.debug:
-    msg: "{{ cluster_info }}"
+    msg: "{{ route_info.result.spec.host }}"
