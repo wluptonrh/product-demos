@@ -94,6 +94,7 @@ controller_inventory_sources:
 controller_templates:
   - name: VM Provision
     job_type: run
+    limit: !localhost
     inventory: "Demo Inventory"
     project: "summit-edu"
     playbook: "kubevirt-provision.yml"
@@ -102,10 +103,63 @@ controller_templates:
     notification_templates_error: Telemetry
     credentials: OpenShift Credential
     extra_vars:
+      vm_name: REPLACEME
+      vn_application: REPLACEME
       os_version: rhel9
       cloudusername: REPLACEME
       cloudpassword: REPLACEME
       ssh_authorized_key: REPLACEME
+
+  - name: Deploy Application
+    inventory: "Demo Inventory"
+    project: "summit-edu"
+    playbook: "deploy-app.yml"
+    notification_templates_started: Telemetry
+    notification_templates_success: Telemetry
+    notification_templates_error: Telemetry
+    credentials: VM Credential
+    survey:
+      name: ''
+      description: ''
+      spec:
+        - question_name: VM Name or Pattern
+          type: text
+          variable: vm_name
+          required: true
+        - question_name: Workload Type
+          type: multiplechoice
+          variable: vm_application
+          choices:
+            - apache
+            - cockpit
+          required: true
+          
+  - name: Expose Application
+    inventory: "Demo Inventory"
+    project: "summit-edu"
+    playbook: "expose-app.yml"
+    notification_templates_started: Telemetry
+    notification_templates_success: Telemetry
+    notification_templates_error: Telemetry
+    credentials: OCP Credential
+    survey:
+      name: ''
+      description: ''
+      spec:
+        - question_name: VM Name or Pattern
+          type: text
+          variable: vm_name
+          required: true
+        - question_name: Workload Type
+          type: multiplechoice
+          variable: vm_application
+          choices:
+            - apache
+            - cockpit
+          required: true
+
+      
+    
 
 
 
