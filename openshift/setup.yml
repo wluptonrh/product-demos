@@ -99,7 +99,6 @@ controller_inventory_sources:
 controller_templates:
   - name: VM Provision
     job_type: run
-    limit: !localhost
     inventory: "Demo Inventory"
     project: "summit-edu"
     playbook: "kubevirt-provision.yml"
@@ -118,6 +117,7 @@ controller_templates:
 
   - name: Deploy Application
     inventory: "Demo Inventory"
+    limit: '!localhost'
     project: "Ansible official demo project"
     playbook: "deploy-app.yml"
     notification_templates_started: Telemetry
