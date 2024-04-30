@@ -98,7 +98,7 @@ controller_inventory_sources:
     credential: OpenShift Credential
 
 controller_templates:
-  - name: VM Provision
+  - name: Provision VM
     job_type: run
     inventory: "Demo Inventory"
     project: "summit-edu"
