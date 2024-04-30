@@ -140,7 +140,7 @@ controller_templates:
           
   - name: Expose Application
     inventory: "Demo Inventory"
-    project: "sAnsible official demo project"
+    project: "Ansible official demo project"
     playbook: "expose-app.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
