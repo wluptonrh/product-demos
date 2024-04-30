@@ -103,7 +103,7 @@ controller_inventory_sources:
     inventory: Demo Inventory
     source: scm
     source_project: ocp-virt-inventory
-    #execution_environment: quay.io/cmcaskil/kubevirt_ee
+    execution_environment: summit-edu-kubevirt-ee
     #source_path:
     credential: OpenShift Credential
 
@@ -117,7 +117,8 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
     credentials: OpenShift Credential
-    #execution_environment: quay.io/cmcaskil/kubevirt_ee
+    execution_environment: summit-edu-kubevirt-ee
+    survey_enabled: true
     extra_vars:
       vm_name: REPLACEME
       vn_application: REPLACEME
@@ -125,6 +126,27 @@ controller_templates:
       cloudusername: REPLACEME
       cloudpassword: REPLACEME
       ssh_authorized_key: REPLACEME
+    survey:
+      name: ''
+      description: ''
+      spec:
+        - question_name: VM Name
+          type: text
+          variable: vm_name
+          required: true
+        - question_name: Workload Type
+          type: multiplechoice
+          variable: vm_application
+          choices:
+            - apache
+            - cockpit
+          required: true
+        - question_name: OS Version
+          type: multiplechoice
+          variable: os_version
+          choices:
+            - rhel9
+          required: true
 
   - name: Deploy Application
     inventory: "Demo Inventory"
@@ -135,7 +157,8 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
     credentials: VM Credential
-    #execution_environment: quay.io/cmcaskil/kubevirt_ee
+    execution_environment: summit-edu-kubevirt-ee
+    survey_enabled: true
     survey:
       name: ''
       description: ''
@@ -160,7 +183,8 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
     credentials: OpenShift Credential
-    #execution_environment: quay.io/cmcaskil/kubevirt_ee
+    execution_environment: summit-edu-kubevirt-ee
+    survey_enabled: true
     survey:
       name: ''
       description: ''
