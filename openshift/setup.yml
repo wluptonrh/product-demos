@@ -101,7 +101,7 @@ controller_templates:
   - name: Provision VM
     job_type: run
     inventory: "Demo Inventory"
-    project: "summit-edu"
+    project: "Ansible official demo project"
     playbook: "openshift/kubevirt-provision.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
