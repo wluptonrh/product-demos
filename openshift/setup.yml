@@ -112,7 +112,7 @@ controller_templates:
 
   - name: Deploy Application
     inventory: "Demo Inventory"
-    project: "summit-edu"
+    project: "Ansible official demo project"
     playbook: "deploy-app.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
@@ -136,7 +136,7 @@ controller_templates:
           
   - name: Expose Application
     inventory: "Demo Inventory"
-    project: "summit-edu"
+    project: "sAnsible official demo project"
     playbook: "expose-app.yml"
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
