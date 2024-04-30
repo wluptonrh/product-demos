@@ -1,0 +1,79 @@
+---
+# - name: Install Webserver Components and Setup Firewall
+#   hosts: summit-edu-{{ vm_name }}
+#   become: true
+#   tasks:
+
+- name: Install unzip
+  ansible.builtin.dnf:
+    name: unzip
+    state: present
+
+- name: Install firewalld
+  ansible.builtin.dnf:
+    name: firewalld
+    state: present
+
+- name: Ensure firewalld is running
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
+- name: Allow HTTP traffic on web servers
+  ansible.posix.firewalld:
+    service: http
+    permanent: true
+    state: enabled
+  #notify: Reload Firewall
+
+- name: Allow HTTPS traffic on web servers
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+  #notify: Reload Firewall
+
+
+- name: Install apache
+  ansible.builtin.dnf:
+    name: httpd
+    state: present
+
+- name: Start apache
+  ansible.builtin.service:
+    name: httpd
+    state: started
+  check_mode: false
+
+- name: Download website template
+  ansible.builtin.get_url:
+    url: https://www.free-css.com/assets/files/free-css-templates/download/page281/koppee.zip
+    dest: /var/www/html/web.zip
+    # mode: 0644
+
+- name: Unarchive web content
+  ansible.builtin.unarchive:
+    src: /var/www/html/web.zip
+    dest: /var/www/html/
+    remote_src: true
+    # mode: 0644
+
+- name: Copy contents to html
+  ansible.builtin.copy:
+    src: /var/www/html/coffee-shop-html-template/
+    dest: /var/www/html
+    remote_src: true
+    # mode: 0644
+
+    # - name: Copy index.html
+    #   ansible.builtin.copy:
+    #     src: web.html
+    #     dest: /var/www/html/index.html
+    #     mode: '644'
+
+  #handlers:
+- name: Reload Firewall
+  ansible.builtin.service:
+    name: firewalld
+    state: reloaded
