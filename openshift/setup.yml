@@ -55,7 +55,7 @@ controller_credentials:
     inputs:
       virt_host: REPLACEME
       virt_api_key: REPLACEME
-      virt_validate_certs: 'false'
+      #virt_validate_certs: 'false'
 
   - name: RHSM Credential 
     credential_type: RHSM Credential Type
