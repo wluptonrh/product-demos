@@ -69,9 +69,9 @@ controller_credentials:
     credential_type: Machine
     organization: Default
 
-# controller_execution_environments:
-#   - name: summit-edu-kubevirt-ee
-#     image: quay.io/cmcaskil/kubevirt_ee
+controller_execution_environments:
+  - name: summit-edu-kubevirt-ee
+    image: quay.io/cmcaskil/kubevirt_ee
     
 controller_projects:
   - name: Ansible official demo project
@@ -159,7 +159,7 @@ controller_templates:
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
-    credentials: OCP Credential
+    credentials: OpenShift Credential
     #execution_environment: quay.io/cmcaskil/kubevirt_ee
     survey:
       name: ''
