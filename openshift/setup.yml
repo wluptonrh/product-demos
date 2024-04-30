@@ -1,4 +1,11 @@
 ---
+controller_components:
+  - projects
+  - credential_types
+  - credentials
+  - inventory_sources
+  - job_templates
+  
 controller_credential_types:
   - name: OCP Credential Type
     inputs:
