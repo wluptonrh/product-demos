@@ -74,17 +74,19 @@ controller_credentials:
 #     image: quay.io/cmcaskil/kubevirt_ee
     
 controller_projects:
-  # - name: Ansible official demo project
-  #   organization: Default
-  #   scm_branch: main
-  #   scm_type: git
-  #   scm_update_on_launch: 'no'
-  #   scm_url: https://github.com/wluptonrh/product-demos.git
+  - name: Ansible official demo project
+    organization: Default
+    scm_branch: main
+    scm_type: git
+    wait: yes
+    scm_update_on_launch: 'no'
+    scm_url: https://github.com/wluptonrh/product-demos.git
 
   - name: ocp-virt-inventory
     organization: Default
     scm_branch: main
     scm_type: git
+    wait: yes
     scm_update_on_launch: 'no'
     scm_url: https://github.com/wluptonrh/ocp-virt-inventory.git
 
@@ -92,6 +94,7 @@ controller_projects:
     organization: Default
     scm_branch: main
     scm_type: git
+    wait: yes
     scm_update_on_launch: 'no'
     scm_url: https://github.com/wluptonrh/summit-edu.git
 
