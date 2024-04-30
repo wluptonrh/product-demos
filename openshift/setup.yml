@@ -69,9 +69,9 @@ controller_credentials:
     credential_type: Machine
     organization: Default
 
-controller_execution_environments:
-  - name: summit-edu-kubevirt-ee
-    image: quay.io/cmcaskil/kubevirt_ee
+# controller_execution_environments:
+#   - name: summit-edu-kubevirt-ee
+#     image: quay.io/cmcaskil/kubevirt_ee
     
 controller_projects:
   - name: ocp-virt-inventory
@@ -93,7 +93,7 @@ controller_inventory_sources:
     inventory: Demo Inventory
     source: scm
     source_project: ocp-virt-inventory
-    execution_environment: quay.io/cmcaskil/kubevirt_ee
+    #execution_environment: quay.io/cmcaskil/kubevirt_ee
     #source_path:
     credential: OpenShift Credential
 
@@ -107,7 +107,7 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
     credentials: OpenShift Credential
-    execution_environment: quay.io/cmcaskil/kubevirt_ee
+    #execution_environment: quay.io/cmcaskil/kubevirt_ee
     extra_vars:
       vm_name: REPLACEME
       vn_application: REPLACEME
@@ -125,7 +125,7 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
     credentials: VM Credential
-    execution_environment: quay.io/cmcaskil/kubevirt_ee
+    #execution_environment: quay.io/cmcaskil/kubevirt_ee
     survey:
       name: ''
       description: ''
@@ -150,7 +150,7 @@ controller_templates:
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
     credentials: OCP Credential
-    execution_environment: quay.io/cmcaskil/kubevirt_ee
+    #execution_environment: quay.io/cmcaskil/kubevirt_ee
     survey:
       name: ''
       description: ''
