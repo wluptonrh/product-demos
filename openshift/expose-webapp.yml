@@ -42,14 +42,14 @@
         port:
           targetPort: 80
 
-- name: Fetch route info
-  kubernetes.core.k8s:
-    api_version: v1
-    kind: Route
-    name: webapp-route
-    namespace: summit-edu
-  register: route_info
+# - name: Fetch route info
+#   kubernetes.core.k8s:
+#     api_version: v1
+#     kind: Route
+#     name: webapp-route
+#     namespace: summit-edu
+#   register: route_info
 
-- name: Print webapp route info
-  ansible.builtin.debug:
-    msg: "{{ route_info.result.spec.host }}"
+# - name: Print webapp route info
+#   ansible.builtin.debug:
+#     msg: "{{ route_info.result.spec.host }}"
