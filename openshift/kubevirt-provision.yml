@@ -100,4 +100,4 @@
   # until after the inventory sync occurs
     - name: Wait 5 seconds to install because anything else is hard
       ansible.builtin.pause:
-        seconds: 5
+        seconds: 10
