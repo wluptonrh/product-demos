@@ -95,9 +95,14 @@
                         ssh_authorized_keys:
                             - "{{ ssh_authorized_key }}"
 
+- name: Sleep for 300 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 30
+  delegate_to: localhost
+
   # Normally we could wait for SSH to be up and running, however,
   # we don't know the IP address (or have name resolution) of the VM
   # until after the inventory sync occurs
-    - name: Wait 15 seconds to install
-      ansible.builtin.pause:
-        seconds: 15
+    # - name: Wait 15 seconds to install
+    #   ansible.builtin.pause:
+    #     seconds: 15
