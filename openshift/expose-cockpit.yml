@@ -1,5 +1,5 @@
 ---
-# - name: Create Service Access the RHEL Web Console
+# - name: Create Service for RHEL Web Console Access
 #   hosts: localhost
 #   tasks:
 
