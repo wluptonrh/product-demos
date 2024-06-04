@@ -1,6 +1,6 @@
 ---
 - name: Install Application and Config Firewall
-  hosts: summit-edu-{{ vm_name }}
+  hosts: openshift-cnv-{{ vm_name }}
   become: true
   tasks:
 

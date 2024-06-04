@@ -12,7 +12,7 @@
       kind: Service
       metadata:
         name: webapp-service
-        namespace: summit-edu
+        namespace: openshift-cnv
       spec:
         selector:
           env: "{{ vm_application }}"
@@ -29,7 +29,7 @@
       apiVersion: route.openshift.io/v1
       metadata:
         name: webapp-route
-        namespace: summit-edu
+        namespace: openshift-cnv
         labels: {}
       spec:
         to:
