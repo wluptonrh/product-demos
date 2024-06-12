@@ -11,7 +11,7 @@
       kind: Service
       metadata:
         name: cockpit-service
-        namespace: summit-edu
+        namespace: openshift-cnv
       spec:
         type: NodePort
         selector:

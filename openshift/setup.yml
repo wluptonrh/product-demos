@@ -25,7 +25,7 @@ controller_credential_types:
         - virt_host
         - virt_api_key
     injectors:
-      extra_vars:
+      env:
         K8S_AUTH_HOST: !unsafe '{{ virt_host }}'
         K8S_AUTH_API_KEY: !unsafe '{{ virt_api_key }}'
         K8S_AUTH_VERIFY_SSL: !unsafe '{{ virt_validate_certs }}'
@@ -121,7 +121,7 @@ controller_templates:
     survey_enabled: true
     extra_vars:
       vm_name: REPLACEME
-      vn_application: REPLACEME
+      vm_application: REPLACEME
       os_version: rhel9
       cloudusername: REPLACEME
       cloudpassword: REPLACEME
