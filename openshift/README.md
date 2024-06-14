@@ -1,6 +1,6 @@
 # OpenShift Demos
 
-## Will's Setup Notes
+## Setup Notes
   1. Follow general setup instructions in the root directory of this repo to pull collections with your Automation Hub credentials and create the default Setup JT
   2. Once you have created the Setup job template, add demo: openshift to the extra vars and launch. This lab should create most of the resources required.
 
