@@ -11,7 +11,7 @@
       kind: Service
       metadata:
         name: cockpit-service
-        namespace: openshift-cnv
+        namespace: "{{ vm_namespace }}"
       spec:
         type: NodePort
         selector:
