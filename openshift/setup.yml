@@ -252,33 +252,36 @@ controller_workflows:
     notification_templates_success: []
     notification_templates_error: []
     notification_templates_approvals: []
-    survey_spec:
-      - question_name: VM Name
-        type: text
-        variable: vm_name
-        required: true
-      - question_name: OS Version
-        type: multiplechoice
-        variable: os_version
-        choices:
-          - rhel9
-        required: true
-      - question_name: Memory (GB)
-        type: integer
-        default: 2
-        variable: mem_gb
-        required: true
-      - question_name: Disk (GB)
-        type: integer
-        default: 16
-        variable: disk_gb
-        required: true
-      - question_name: OpenShift Project
-        type: text
-        default: vmimported
-        variable: vm_namespace
-        required: true
-  
+    survey:
+      name: ''
+      description: ''
+      spec:
+        - question_name: VM Name
+          type: text
+          variable: vm_name
+          required: true
+        - question_name: OS Version
+          type: multiplechoice
+          variable: os_version
+          choices:
+            - rhel9
+          required: true
+        - question_name: Memory (GB)
+          type: integer
+          default: 2
+          variable: mem_gb
+          required: true
+        - question_name: Disk (GB)
+          type: integer
+          default: 16
+          variable: disk_gb
+          required: true
+        - question_name: OpenShift Project
+          type: text
+          default: vmimported
+          variable: vm_namespace
+          required: true
+    
 
 
 
