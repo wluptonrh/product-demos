@@ -120,6 +120,7 @@ controller_templates:
     extra_vars:
       vm_name: REPLACEME
       vm_application: REPLACEME
+      vm_namespace: REPLACEME
       os_version: rhel9
       cloudusername: REPLACEME
       cloudpassword: REPLACEME
@@ -147,6 +148,11 @@ controller_templates:
           type: integer
           default: 16
           variable: mem_gb
+          required: true
+        - question_name: OpenShift Project
+          type: text
+          default: vmimported
+          variable: vm_namespace
           required: true
         
           
