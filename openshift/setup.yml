@@ -132,19 +132,24 @@ controller_templates:
           type: text
           variable: vm_name
           required: true
-        - question_name: Workload Type
-          type: multiplechoice
-          variable: vm_application
-          choices:
-            - apache
-            - cockpit
-          required: true
         - question_name: OS Version
           type: multiplechoice
           variable: os_version
           choices:
             - rhel9
           required: true
+        - question_name: Memory (GB)
+          type: integer
+          default: 2
+          variable: mem_gb
+          required: true
+        - question_name: Disk (GB)
+          type: integer
+          default: 16
+          variable: mem_gb
+          required: true
+        
+          
 
   - name: Deploy Application
     inventory: "Demo Inventory"
