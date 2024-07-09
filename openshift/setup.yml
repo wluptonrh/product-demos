@@ -147,7 +147,7 @@ controller_templates:
         - question_name: Disk (GB)
           type: integer
           default: 16
-          variable: mem_gb
+          variable: disk_gb
           required: true
         - question_name: OpenShift Project
           type: text
