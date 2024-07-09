@@ -50,13 +50,18 @@ controller_credential_types:
         rhsm_username: !unsafe '{{ username }}'
 
 controller_credentials:
-  - name: OpenShift Credential
+  - name: OpenShift Inventory Credential
     credential_type: OCP Credential Type
     organization: Default
     inputs:
       virt_host: REPLACEME
       virt_api_key: REPLACEME
       #virt_validate_certs: 'false'
+
+  - name: OpenShift Default Credential
+    credential_type: OpenShift or Kubernetes API Bearer Token
+    organization: Default
+      
 
   - name: RHSM Credential 
     credential_type: RHSM Credential Type
@@ -90,13 +95,6 @@ controller_projects:
     scm_update_on_launch: 'no'
     scm_url: https://github.com/wluptonrh/ocp-virt-inventory.git
 
-  - name: summit-edu
-    organization: Default
-    scm_branch: main
-    scm_type: git
-    wait: yes
-    scm_update_on_launch: 'no'
-    scm_url: https://github.com/wluptonrh/summit-edu.git
 
 controller_inventory_sources:
   - name: OpenShift Inventory Source
