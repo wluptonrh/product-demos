@@ -210,8 +210,46 @@ controller_templates:
             - cockpit
           required: true
 
-      
-    
+controller_workflows:
+  - name: Application Deployment Workflow
+    extra_vars: ''
+    survey_enabled: true
+    allow_simultaneous: false
+    ask_variables_on_launch: false
+    inventory: Demo Inventory
+    ask_inventory_on_launch: false
+    ask_scm_branch_on_launch: false
+    ask_limit_on_launch: false
+    organization: Default
+    schedules: []
+    simplified_workflow_nodes:
+      - all_parents_must_converge: false
+        identifier: node101
+        unified_job_template: Provision VM
+        credentials: []
+        success_nodes:
+          - node201
+        failure_nodes: []
+        always_nodes: []
+      - all_parents_must_converge: false
+        identifier: node201
+        unified_job_template: Deploy Application
+        credentials: []
+        success_nodes:
+          - node301
+      - all_parents_must_converge: false
+        identifier: node301
+        unified_job_template: Expose Application
+        credentials: []
+        success_nodes: []
+        failure_nodes: []
+        always_nodes: []
+    notification_templates_started: []
+    notification_templates_success: []
+    notification_templates_error: []
+    notification_templates_approvals: []
+    survey_spec: {}
+  
 
 
 
