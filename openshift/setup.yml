@@ -115,7 +115,10 @@ controller_templates:
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
-    credentials: OpenShift Credential
+    credentials: 
+      - OpenShift Credential
+      - RHSM Credential
+      - Controller Credential
     execution_environment: summit-edu-kubevirt-ee
     survey_enabled: true
     extra_vars:
