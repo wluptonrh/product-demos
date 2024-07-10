@@ -131,7 +131,7 @@ controller_templates:
       cloudusername: REPLACEME
       cloudpassword: REPLACEME
       ssh_authorized_key: REPLACEME
-      vm_timeout: REPLACEME
+      vm_timeout: 300
     survey:
       name: ''
       description: ''
