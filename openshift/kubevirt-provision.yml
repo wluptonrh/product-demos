@@ -32,7 +32,7 @@
                   storage:
                     resources:
                       requests:
-                        storage: "{{ disk_gb }}"
+                        storage: "{{ disk_gb + 'Gi' }}"
             running: true
             template:
               metadata:
@@ -69,7 +69,7 @@
                     type: pc-q35-rhel9.2.0
                   resources:
                     requests:
-                      memory: "{{ mem_gb }}"
+                      memory: "{{ mem_gb + 'Gi' }}"
                 evictionStrategy: LiveMigrate
                 networks:
                   - name: default
