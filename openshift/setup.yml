@@ -9,7 +9,7 @@ controller_components:
   - workflow_job_templates
   
 controller_credential_types:
-  - name: OCP Credential Type
+  - name: OpenShift Inventory Credential Type
     inputs:
       fields:
         - id: virt_host
@@ -52,7 +52,7 @@ controller_credential_types:
 
 controller_credentials:
   - name: OpenShift Inventory Credential
-    credential_type: OCP Credential Type
+    credential_type: OpenShift Inventory Credential Type
     organization: Default
     inputs:
       virt_host: REPLACEME
@@ -104,7 +104,7 @@ controller_inventory_sources:
     source_project: ocp-virt-inventory
     execution_environment: summit-edu-kubevirt-ee
     #source_path:
-    credential: OpenShift Credential
+    credential: OpenShift Inventory Credential
 
 controller_templates:
   - name: Provision VM
@@ -198,7 +198,7 @@ controller_templates:
     notification_templates_started: Telemetry
     notification_templates_success: Telemetry
     notification_templates_error: Telemetry
-    credentials: OpenShift Credential
+    credentials: OpenShift Default Credential
     execution_environment: summit-edu-kubevirt-ee
     survey_enabled: true
     survey:
