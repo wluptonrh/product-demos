@@ -26,7 +26,7 @@
 | OpenShift Default Credential | This Credential will allows Controller to perform tasks on the cluster. The easiest way to gather your the cluster ip and bearer token is by running ```oc cluster-info``` and ```oc whoami --show-token``` commands repspectively. |
 | OpenShift Inventory Credential | This Credential serves the same purpose as above but is unique to the OCP Inventory Source that exists in AAP, which uses a slightly different method to authenticate to the cluster. In the future I will fix this to use a better auth mechanism, but this is my quick and easy workaround for now. |
 | RHSM Credential | This credential will contain your Red Hat login info which is required to register your VM once it is provisioned. In the future, I plan to avoid this approach and leverage activation keys instead via cloud init ... but again it is an easy workaround for now :) |
-| VM Credential | This credential will allow Controller to connect directly to the VM instance using an SSH keypair that you generate via ```ssh-keygen```. In this case, you only need to add the private key to this credential. The public key will be injected at provisioning time via the ```ssh_authorized_key``` extra var in the ```Provision VM``` Job Template.
+| VM Credential | This credential will allow Controller to connect directly to the VM instance using an SSH keypair that you generate via ```ssh-keygen```. In this case, you only need to add the private key to this credential. The public key will be injected at provisioning time via the ```ssh_authorized_key``` extra var defined in the ```Provision VM``` Job Template.
 
 ## Table of Contents
 - [OpenShift Demos](#openshift-demos)
