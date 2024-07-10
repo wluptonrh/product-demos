@@ -276,7 +276,7 @@ controller_workflows:
           required: true
         - question_name: Disk (GB)
           type: integer
-          default: 16
+          default: 30
           variable: disk_gb
           required: true
         - question_name: OpenShift Project
