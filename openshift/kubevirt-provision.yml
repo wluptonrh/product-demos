@@ -32,7 +32,7 @@
                   storage:
                     resources:
                       requests:
-                        storage: "{{ disk_gb }}"
+                        storage: "{{ disk_gb + 'Gi' }}"
             running: true
             template:
               metadata:
