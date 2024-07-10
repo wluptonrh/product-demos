@@ -14,10 +14,10 @@
 
 | Job Templates / Workflows | Description
 |-----------|-------------|
-| [Application Deployment Workflow] | This workflow combines the below job templates into a single execution. This is the recommended approach to leveraging the demo content |
-| [Provision VM] | Will provision a RHEL 9 VM using a paramaterized VirtualMachine CR. All defaults for VM configurations are provided in the survey, though you can override these by disabling the survey and provide them directly in extra vars of the JT |
-| [Deploy Application] | This will install one of two workloads: an apache webserver with custom web content or cockpit, to remotely manage your vm |
-| [Expose Application] | Depending on the workload type you have chosen (apache or cockpit), this JT will create the necessary Service and Route definitions to make our workloads accessable outside the cluster network |
+| Application Deployment Workflow | This workflow combines the below job templates into a single execution. This is the recommended approach to leveraging the demo content |
+| Provision VM | Will provision a RHEL 9 VM using a paramaterized VirtualMachine CR. All defaults for VM configurations are provided in the survey, though you can override these by disabling the survey and provide them directly in extra vars of the JT |
+| Deploy Application | This will install one of two workloads: an apache webserver with custom web content or cockpit, to remotely manage your vm |
+| Expose Application | Depending on the workload type you have chosen (apache or cockpit), this JT will create the necessary Service and Route definitions to make our workloads accessable outside the cluster network |
 
   3. Before we can execute the above templates, we need to populate the following Credentials that were created by the Setup template. 
 
