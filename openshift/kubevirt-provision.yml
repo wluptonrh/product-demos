@@ -101,7 +101,7 @@
     
     - name: Sleep for 300 seconds and continue with play
       ansible.builtin.wait_for:
-        timeout: "{{ vm_timeout | default(300) }}"
+        timeout: "{{ vm_timeout | default(300) | int }}"
       delegate_to: localhost
 
     - name: Refresh the OpenShift Inventory Source 
