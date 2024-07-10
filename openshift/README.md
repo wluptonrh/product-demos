@@ -1,5 +1,6 @@
 # OpenShift Demos
 - These playbooks demonstrate the automation of basic VM lifecycle operations on OpenShift
+- Why is it cool? By leveraging the AAP operator, we can quickly stand up our automation infrastructure and perform post-migration vm configurations from an alternative virtualization platform. Also, I'm lazy and this will automate (most) of the demo setup.
 
 ## Prerequisites
 - You have an existing OpenShift Cluster with virtualization enabled or an Experience OpenShift Virtualization Roadshow environment on hand
@@ -8,7 +9,10 @@
 ## Setup Notes
   1. Follow general setup instructions in the root directory of this repo to pull collections with your Automation Hub credentials and create the default Setup JT
   2. Once you have created the Setup job template, add ```demo: openshift``` to the extra vars and launch. Once complete, the following resources will be created within AAP:
-     
+
+Job Templates / Workflows
+|-----------|-------------|
+| Provision VM | Will provision a RHEL 9 VM using a paramaterized VirtualMachine CR. All defaults for VM configurations are provided in the survey, though you can override these by disabling the survey and provide them directly in extra vars of the JT.
 
 
 
