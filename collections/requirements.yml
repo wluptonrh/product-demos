@@ -42,3 +42,4 @@ collections:
     version: 2.3.0
   - name: kubernetes.core
     version: 2.4.0
+
