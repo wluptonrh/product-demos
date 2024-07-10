@@ -6,7 +6,7 @@
 ## Prerequisites
 - You have an existing OpenShift Cluster with virtualization enabled or an Experience OpenShift Virtualization Roadshow environment on hand
 - An existing Ansible Controller instance or (preferably) the Ansible Automation Platform Operator installed with a Controller instance running on your OCP Cluster
-- You have created a Project named ```vmimported``` on your OpenShift cluster. Controller only reference this project with populating the Controller inventory, it's jank, I know.
+- You have created a Project named ```vmimported``` on your OpenShift cluster. Controller only references this project when populating its inventory... it's jank, I know.
 
 ## Setup Notes
   1. Follow the README in the root directory of this repo to pull collections with your Automation Hub credentials and create the default Setup JT. Worth noting that you will need to create a Controller Credential 
