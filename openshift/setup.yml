@@ -147,12 +147,12 @@ controller_templates:
             - rhel9
           required: true
         - question_name: Memory (GB)
-          type: integer
+          type: string
           default: 2
           variable: mem_gb
           required: true
         - question_name: Disk (GB)
-          type: integer
+          type: string
           default: 16
           variable: disk_gb
           required: true
