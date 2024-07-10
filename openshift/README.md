@@ -10,9 +10,9 @@
   1. Follow general setup instructions in the root directory of this repo to pull collections with your Automation Hub credentials and create the default Setup JT
   2. Once you have created the Setup job template, add ```demo: openshift``` to the extra vars and launch. Once complete, the following resources will be created within AAP:
 
-Job Templates / Workflows
+| Job Templates / Workflows | Description
 |-----------|-------------|
-| Provision VM | Will provision a RHEL 9 VM using a paramaterized VirtualMachine CR. All defaults for VM configurations are provided in the survey, though you can override these by disabling the survey and provide them directly in extra vars of the JT.
+| [Provision VM] | Will provision a RHEL 9 VM using a paramaterized VirtualMachine CR. All defaults for VM configurations are provided in the survey, though you can override these by disabling the survey and provide them directly in extra vars of the JT |
 
 
 
