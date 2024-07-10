@@ -99,7 +99,7 @@
     # we don't know the IP address (or have name resolution) of the VM
     # until after the inventory sync occurs
     
-    - name: Sleep for 300 seconds and continue with play
+    - name: Sleep for timeout period (seconds) and continue with play
       ansible.builtin.wait_for:
         timeout: "{{ vm_timeout | int }}"
       delegate_to: localhost
