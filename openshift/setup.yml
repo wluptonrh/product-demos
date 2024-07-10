@@ -122,13 +122,16 @@ controller_templates:
     execution_environment: summit-edu-kubevirt-ee
     survey_enabled: true
     extra_vars:
-      vm_name: REPLACEME
+      vm_name: REPLACEME #defaults for all parameters are set in the provided survey with the exception of ssh_authorized_key (public ssh key)
       vm_application: REPLACEME
       vm_namespace: REPLACEME
+      disk_gb: REPLACEME
+      mem_gb: REPLACEME
       os_version: rhel9
       cloudusername: REPLACEME
       cloudpassword: REPLACEME
       ssh_authorized_key: REPLACEME
+      vm_timeout: REPLACEME
     survey:
       name: ''
       description: ''
