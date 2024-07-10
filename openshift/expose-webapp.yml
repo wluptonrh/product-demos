@@ -12,7 +12,7 @@
       kind: Service
       metadata:
         name: webapp-service
-        namespace: openshift-cnv
+        namespace: "{{ vm_namespace | default('vmimported') }}"
       spec:
         selector:
           env: "{{ vm_application }}"
@@ -29,7 +29,7 @@
       apiVersion: route.openshift.io/v1
       metadata:
         name: webapp-route
-        namespace: openshift-cnv
+        namespace: "{{ vm_namespace | default('vmimported') }}"
         labels: {}
       spec:
         to:
