@@ -275,6 +275,7 @@ controller_workflows:
           choices:
             - apache
             - cockpit
+          default: apache
         - question_name: Memory (GB)
           type: integer
           default: 2
