@@ -269,6 +269,12 @@ controller_workflows:
           choices:
             - rhel9
           required: true
+        - question_name: Workload Type
+          type: multiplechoice
+          variable: vm_application
+          choices:
+            - apache
+            - cockpit
         - question_name: Memory (GB)
           type: integer
           default: 2
