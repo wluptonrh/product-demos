@@ -1,0 +1,45 @@
+
+---
+
+# - name: Create Service and Route for our Apache Webserver
+#   hosts: localhost
+#   tasks:
+
+- name: Create satellite service
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: satellite-service
+        namespace: "{{ vm_namespace | default('vmimported') }}"
+      spec:
+        selector:
+          env: "{{ vm_application }}"
+        ports:
+          - protocol: TCP
+            port: 9090
+            targetPort: 9090
+
+- name: Create satellite route
+  kubernetes.core.k8s:
+    state: present
+    definition: 
+      kind: Route
+      apiVersion: route.openshift.io/v1
+      metadata:
+        name: satellite-route
+        namespace: "{{ vm_namespace | default('vmimported') }}"
+        labels: {}
+      spec:
+        to:
+          kind: Service
+          name: satellite-service
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+        wildcardPolicy: None
+        port:
+          targetPort: 9090
+
