@@ -13,3 +13,8 @@
       ansible.builtin.import_tasks: 
         file: expose-cockpit.yml
       when: vm_application == "cockpit"
+
+    - name: Setup Networking for Satellite
+      ansible.builtin.import_tasks: 
+        file: expose-satellite.yml
+      when: vm_application == "satellite"
