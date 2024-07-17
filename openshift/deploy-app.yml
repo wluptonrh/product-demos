@@ -16,3 +16,8 @@
       ansible.builtin.import_tasks: 
         file: deploy-cockpit.yml
       when: vm_application == "cockpit"
+
+    - name: Install and Start Satellite
+      ansible.builtin.import_tasks: 
+        file: deploy-satellite.yml
+      when: vm_application == "satellite"
