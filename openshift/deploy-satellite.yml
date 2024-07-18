@@ -47,7 +47,7 @@
   ansible.builtin.command: hostnamectl set-hostname satellite
 
 - name: Enable Satellite module
-  ansible.builtin.command: dnf module enable satellite:el8
+  ansible.builtin.command: dnf module enable -y satellite:el8
 
 - name: Update all packages
   ansible.builtin.command: dnf update -y
