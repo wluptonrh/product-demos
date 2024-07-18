@@ -12,8 +12,8 @@
     state: started
     enabled: true
 
-- name: Disable all repositories
-  ansible.builtin.command: subscription-manager repos --disable "*"
+# - name: Disable all repositories
+#   ansible.builtin.command: subscription-manager repos --disable "*"
 
 - name: Enable specific repositories
   ansible.builtin.command: >
