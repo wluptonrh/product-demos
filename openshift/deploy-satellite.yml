@@ -6,6 +6,12 @@
     name: firewalld
     state: present
 
+- name: Ensure firewalld is running
+  ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: true
+
 - name: Disable all repositories
   ansible.builtin.command: subscription-manager repos --disable "*"
 
