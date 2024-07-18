@@ -1,6 +1,11 @@
 ---
 #NOTE: This playbook is not idempotent
 
+- name: Install firewalld
+  ansible.builtin.dnf:
+    name: firewalld
+    state: present
+
 - name: Disable all repositories
   ansible.builtin.command: subscription-manager repos --disable "*"
 
