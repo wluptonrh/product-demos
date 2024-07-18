@@ -2,10 +2,10 @@
 #NOTE: This playbook is not idempotent
 
 - name: Disable all repositories
-  command: subscription-manager repos --disable "*"
+  ansible.builtin.command: subscription-manager repos --disable "*"
 
 - name: Enable specific repositories
-  command: >
+  ansible.builtin.command: >
     subscription-manager repos
     --enable=rhel-8-for-x86_64-baseos-rpms
     --enable=rhel-8-for-x86_64-appstream-rpms
@@ -13,14 +13,14 @@
     --enable=satellite-maintenance-6.15-for-rhel-8-x86_64-rpms
 
 - name: Open ports for Satellite Client
-  command: >
+  ansible.builtin.command: >
     firewall-cmd \
     --add-port="5647/tcp" \
     --add-port="8000/tcp" \
     --add-port="9090/tcp"
 
 - name: Allow access to services on Satellite Server
-  command: >
+  ansible.builtin.command: >
     firewall-cmd \
     --add-service=dns \
     --add-service=dhcp \
@@ -30,31 +30,31 @@
     --add-service=puppetmaster
 
 - name: Make firewall changes persistent
-  command: firewall-cmd --runtime-to-permanent
+  ansible.builtin.command: firewall-cmd --runtime-to-permanent
 
 - name: Set hostname
-  command: hostnamectl set-hostname satellite
+  ansible.builtin.command: hostnamectl set-hostname satellite
 
 - name: Enable Satellite module
-  command: dnf module enable satellite:el8
+  ansible.builtin.command: dnf module enable satellite:el8
 
 - name: Update all packages
-  command: dnf update -y
+  ansible.builtin.command: dnf update -y
 
 - name: Install Satellite
-  command: dnf install -y satellite
+  ansible.builtin.command: dnf install -y satellite
 
 - name: Install Chrony
-  command: dnf install -y chrony
+  ansible.builtin.command: dnf install -y chrony
 
 - name: Enable and start Chrony
-  command: systemctl enable --now chronyd
+  ansible.builtin.command: systemctl enable --now chronyd
 
 - name: Install sos package via satellite-maintain
-  command: satellite-maintain packages install sos
+  ansible.builtin.command: satellite-maintain packages install sos
 
 - name: Run Satellite installer
-  command: >
+  ansible.builtin.command: >
     satellite-installer --scenario satellite
     --foreman-initial-organization "Demo_Organization"
     --foreman-initial-location "Raleigh"
