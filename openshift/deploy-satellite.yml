@@ -62,7 +62,7 @@
   ansible.builtin.command: systemctl enable --now chronyd
 
 - name: Install sos package via satellite-maintain
-  ansible.builtin.command: satellite-maintain packages install sos
+  ansible.builtin.command: satellite-maintain packages install -y sos
 
 - name: Run Satellite installer
   ansible.builtin.command: >
