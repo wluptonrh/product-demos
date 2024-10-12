@@ -69,7 +69,7 @@
                     type: pc-q35-rhel9.2.0
                   resources:
                     requests:
-                      memory: "{{ mem_gb + 'Gi' }}"
+                      memory: "{{ mem_gb }}Gi"
                 evictionStrategy: LiveMigrate
                 networks:
                   - name: default
