@@ -102,7 +102,7 @@
       awx.awx.group:
         name: "{{ vm_application }}"
         description: "Local Host Group"
-        inventory: Default Inventory
+        inventory: Demo Inventory
         hosts:
           - vmimported-{{ create_vm_vm_name }}
     
