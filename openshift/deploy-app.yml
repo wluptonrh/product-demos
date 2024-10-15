@@ -1,6 +1,6 @@
 ---
 - name: Install Application and Config Firewall
-  hosts: all
+  hosts: "{{ create_vm_vm_name }}"
   #hosts: "{{ vm_namespace }}-{{ vm_name }}"
   become: true
   tasks:
