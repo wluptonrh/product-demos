@@ -94,17 +94,19 @@
                         ssh_pwauth: True
                         ssh_authorized_keys:
                           - "{{ ssh_authorized_key }}"
+
+    # - name: Add VM to AAP host group
+    #   awx.awx.group:
+    #     name: "{{ vm_application }}"
+    #     description: "Local Host Group"
+    #     inventory: Demo Inventory
+    #     hosts:
+    #       - vmimported-{{ create_vm_vm_name }}
                           
     # Normally we could wait for SSH to be up and running, however,
     # we don't know the IP address (or have name resolution) of the VM
     # until after the inventory sync occurs
-    - name: Add VM to AAP host group
-      awx.awx.group:
-        name: "{{ vm_application }}"
-        description: "Local Host Group"
-        inventory: Demo Inventory
-        hosts:
-          - vmimported-{{ create_vm_vm_name }}
+
     
     - name: Sleep for timeout period (seconds) and continue with play
       ansible.builtin.wait_for:
