@@ -12,7 +12,7 @@
       kind: Service
       metadata:
         name: webapp-service
-        namespace: "{{ vm_namespace | default('vmimported') }}"
+        namespace: "{{ vm_namespace | default('vmimported-user1') }}"
       spec:
         selector:
           env: "{{ vm_application }}"
